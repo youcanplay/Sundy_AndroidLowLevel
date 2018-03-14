@@ -4,6 +4,5 @@
 
 int mian()
 {
-
-    return 0;
+    printf("hello git!");
 }
