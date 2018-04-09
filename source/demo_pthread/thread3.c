@@ -6,6 +6,7 @@
 #include <pthread.h>
 
 void *thread_function(void *arg);
+pthread_mutex_t mymutex = PTHREAD_MUTEX_INITIALIZER;
 int main()
 {
     pthread_t mypthread[3];
@@ -27,9 +28,14 @@ int main()
 void *thread_function(void *arg)
 {
     int i;
+
+    pthread_mutex_lock(&mymutex);	
     for(i=0; i<5; i++) {
         printf("thread num = %d.\n", (int)arg);
     }
+
+    pthread_mutex_unlock(&mymutex);
+	
     pthread_exit(NULL);	
 }
 
